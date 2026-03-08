@@ -7,17 +7,17 @@ The system allows users to:
 1. Add new schools with their geographic coordinates
 2. Retrieve schools sorted by distance from the user's location
 
-Distance is calculated using the **Haversine Formula**, which computes the shortest distance between two points on Earth's surface using latitude and longitude.
+Distance is calculated using the **Haversine Formula**, which computes the shortest distance between two points on Earth using latitude and longitude.
 
 This project was built as part of a **Node.js Backend Assignment**.
 
 ---
 
-# Problem Statement
+# Project Overview
 
-Many applications require finding nearby entities based on a user's location.
+Many real-world applications require finding nearby entities based on a user's location.
 
-Examples:
+Examples include:
 
 - Google Maps → Nearby restaurants
 - Uber → Nearby drivers
@@ -25,10 +25,10 @@ Examples:
 
 Similarly, this system stores **school locations** and returns the **nearest schools to a user**.
 
-The API solves two core problems:
+The API solves two main problems:
 
 1. Storing schools with geographic coordinates
-2. Sorting schools based on distance from a user’s location
+2. Retrieving schools sorted by distance from a user’s location
 
 ---
 
@@ -56,7 +56,7 @@ Steps involved:
 1. Fetch schools from database
 2. Calculate distance between user and school
 3. Sort schools by distance
-4. Return sorted result
+4. Return sorted results
 
 Nearest schools appear first.
 
@@ -64,53 +64,49 @@ Nearest schools appear first.
 
 # Tech Stack
 
-## Backend
+### Backend
 
-Node.js
-Express.js
+- Node.js
+- Express.js
 
 Why Express?
 
 - Lightweight framework
 - Fast API development
-- Industry standard for Node.js REST APIs
+- Widely used for building REST APIs
 
 ---
 
-## Database
+### Database
 
-MySQL
+- MySQL
 
 Why MySQL?
 
 - Structured relational database
 - Efficient for storing tabular data
-- Required in assignment
+- Required by assignment
 
 ---
 
-## API Testing
+### API Testing
 
-Postman
+- Postman
 
-Used for testing and verifying API endpoints.
+Used to test API endpoints and verify responses.
 
 ---
 
-## Version Control
+### Version Control
 
-Git + GitHub
+- Git
+- GitHub
 
-Used for:
-
-- Source code management
-- Assignment submission
+Used for source code management and submission.
 
 ---
 
 # System Architecture
-
-High level architecture:
 
 ```
 Client (Postman / Browser)
@@ -137,7 +133,7 @@ Example request:
 GET /listSchools?latitude=28.6139&longitude=77.2090
 ```
 
-Request lifecycle:
+Lifecycle:
 
 1. Client sends HTTP request
 2. Express router maps request to controller
@@ -155,22 +151,22 @@ Request lifecycle:
 school-management-api
 │
 ├── src
-│   │
+│
 │   ├── config
 │   │     db.js
-│   │
+│
 │   ├── controllers
 │   │     schoolController.js
-│   │
+│
 │   ├── routes
 │   │     schoolRoutes.js
-│   │
+│
 │   ├── services
 │   │     schoolService.js
-│   │
+│
 │   ├── utils
 │   │     distance.js
-│   │
+│
 │   └── app.js
 │
 ├── .env
@@ -178,18 +174,18 @@ school-management-api
 └── README.md
 ```
 
-Explanation of folders:
+### Folder Explanation
 
-| Folder      | Purpose                                    |
-| ----------- | ------------------------------------------ |
-| config      | Database configuration                     |
-| controllers | Handle HTTP requests and responses         |
-| routes      | API endpoint definitions                   |
-| services    | Business logic                             |
-| utils       | Helper utilities like distance calculation |
-| app.js      | Main Express server                        |
+| Folder      | Purpose                                 |
+| ----------- | --------------------------------------- |
+| config      | Database configuration                  |
+| controllers | Handles request/response logic          |
+| routes      | Defines API endpoints                   |
+| services    | Business logic                          |
+| utils       | Helper functions (distance calculation) |
+| app.js      | Entry point for the Express server      |
 
-This layered structure improves **maintainability and scalability**.
+This layered architecture improves **maintainability and scalability**.
 
 ---
 
@@ -219,21 +215,21 @@ CREATE TABLE schools (
 );
 ```
 
-Field explanation:
+### Field Explanation
 
-| Column    | Description              |
-| --------- | ------------------------ |
-| id        | Unique school identifier |
-| name      | Name of the school       |
-| address   | Physical address         |
-| latitude  | Geographic latitude      |
-| longitude | Geographic longitude     |
+| Column    | Description          |
+| --------- | -------------------- |
+| id        | Unique identifier    |
+| name      | School name          |
+| address   | School address       |
+| latitude  | Geographic latitude  |
+| longitude | Geographic longitude |
 
 ---
 
 # Distance Calculation
 
-The system uses the **Haversine Formula** to compute distance between two coordinates.
+The API calculates distance using the **Haversine Formula**.
 
 Formula:
 
@@ -247,16 +243,16 @@ sin(lat1) × sin(lat2)
 
 Where:
 
-- 6371 = Earth radius in kilometers
-- lat1, lon1 = user location
-- lat2, lon2 = school location
+- 6371 = Earth's radius in kilometers
+- lat1, lon1 = user coordinates
+- lat2, lon2 = school coordinates
 
-Steps performed in the system:
+Steps used in this project:
 
 1. Fetch all schools
-2. Calculate distance for each school
-3. Add distance field
-4. Sort schools
+2. Calculate distance from user location
+3. Attach distance to school object
+4. Sort schools by distance
 
 ---
 
@@ -277,7 +273,7 @@ DB_NAME=school_db
 
 # Database Setup
 
-Open MySQL and run:
+Create database:
 
 ```
 CREATE DATABASE school_db;
@@ -299,15 +295,15 @@ CREATE TABLE schools (
 
 # Installation and Setup
 
-### 1 Clone repository
+### Clone repository
 
 ```
-git clone https://github.com/yourusername/school-management-api.git
+git clone https://github.com/tanishxdev/school-management-api.git
 ```
 
 ---
 
-### 2 Navigate into project
+### Move into project directory
 
 ```
 cd school-management-api
@@ -315,7 +311,7 @@ cd school-management-api
 
 ---
 
-### 3 Install dependencies
+### Install dependencies
 
 ```
 npm install
@@ -323,7 +319,7 @@ npm install
 
 ---
 
-### 4 Setup environment variables
+### Setup environment variables
 
 Create `.env`
 
@@ -337,7 +333,7 @@ DB_NAME=school_db
 
 ---
 
-### 5 Start server
+### Start server
 
 ```
 npm run dev
@@ -353,7 +349,14 @@ http://localhost:5000
 
 # API Endpoints
 
-## 1 Add School
+| Method | Endpoint       | Description                         |
+| ------ | -------------- | ----------------------------------- |
+| POST   | `/addSchool`   | Add a new school                    |
+| GET    | `/listSchools` | Retrieve schools sorted by distance |
+
+---
+
+# Add School API
 
 Endpoint
 
@@ -388,7 +391,7 @@ Response
 
 ---
 
-# 2 List Schools
+# List Schools API
 
 Endpoint
 
@@ -423,31 +426,33 @@ Schools are returned sorted by **distance from the user location**.
 
 # Testing
 
-The APIs were tested using **Postman**.
+APIs were tested using **Postman**.
 
-Test cases:
+Test cases include:
 
-1. Add school with valid data
-2. Add school with missing fields
-3. Retrieve schools using location
-4. Verify distance sorting
+- Add school with valid data
+- Validation failure cases
+- Retrieve schools by location
+- Verify sorting by distance
+
+The Postman collection is included in the repository.
 
 ---
 
 # Design Decisions
 
-### Why compute distance in Node.js?
+### Why calculate distance in Node.js?
 
-Two approaches exist:
+Two possible approaches exist:
 
-1. Calculate distance inside MySQL query
-2. Calculate distance in application logic
+1. Calculate distance directly in MySQL
+2. Calculate distance in the application layer
 
-For this assignment, the calculation is done in Node.js because:
+For this assignment, the calculation is performed in Node.js because:
 
 - Simpler implementation
-- Easier to understand
-- Suitable for small datasets
+- Easier debugging
+- Suitable for smaller datasets
 
 ---
 
@@ -455,22 +460,22 @@ For this assignment, the calculation is done in Node.js because:
 
 Separating logic into layers improves:
 
-- Code readability
-- Maintainability
-- Scalability
+- code readability
+- maintainability
+- scalability
 
-Each layer has a single responsibility.
+Each layer has a **single responsibility**.
 
 ---
 
 # Future Improvements
 
-Possible improvements for production systems:
+Possible production improvements:
 
-- MySQL geospatial queries
+- MySQL geospatial indexing
 - Pagination for large datasets
 - Input validation middleware
-- Authentication for admin access
+- Authentication for admin operations
 - Docker containerization
 - Cloud database deployment
 
@@ -479,8 +484,7 @@ Possible improvements for production systems:
 # Author
 
 Tanish Kumar
-
-B.Tech Undergrad
+B.Tech Undergraduate
 Delhi Technological University
 
 Focused on Backend Development and System Design.
